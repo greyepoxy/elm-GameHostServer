@@ -1,5 +1,5 @@
 var merge = require( 'webpack-merge' );
-var commonConfig = require('./webpack.common.config.js').commonConfig;
+var commonConfig = require('./webpack.common.config.js').commonClientConfig;
 var indexFileConfig = require('./webpack.common.config.js').indexFileConfig;
 var elmConfig = require('./webpack.common.config.js').elmConfig;
 var indexEntryConfig = require('./webpack.common.config.js').indexEntryConfig;

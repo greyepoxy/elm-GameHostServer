@@ -3,8 +3,8 @@ var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-
-  commonConfig: {
+  
+  commonClientConfig: {
     resolve: {
       modulesDirectories: ['node_modules'],
     },

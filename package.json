@@ -1,17 +1,16 @@
 {
-  "name": "elm-webpack-skeleton",
+  "name": "elm-gamehostserver",
   "version": "0.0.1",
-  "description": "A skeleton project for using elm with webpack.",
+  "description": "Server to host a game, partially written in elm.",
   "main": "src/index.js",
   "scripts": {
-    "build": "rimraf dist && webpack --config webpack.prod.config.js",
-    "watch": "webpack --config webpack.prod.config.js --watch",
-    "dev": "webpack-dev-server --config webpack.dev.config.js --port 3000 --hot --inline",
-    "test": "webpack-dev-server --config webpack.test.config.js --port 3001 --inline"
+    "build": "rimraf dist && webpack --config webpack.dev.client.config.js && webpack --config webpack.dev.server.config.js",
+    "watch": "webpack --config webpack.dev.client.config.js --watch && webpack --config webpack.dev.server.config.js",
+    "dev": "webpack-dev-server --config webpack.dev.client.config.js --port 3000 --hot --inline",
+    "test": "webpack-dev-server --config webpack.test.client.config.js --port 3001 --inline"
   },
   "keywords": [
     "elm",
-    "skeleton",
     "webpack",
     "elm-test",
     "elm-webpack-loader",
@@ -37,5 +36,8 @@
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.8.3"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
   }
 }

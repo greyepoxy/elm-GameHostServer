@@ -1,5 +1,5 @@
-# elm-webpack-skeleton
-Skeleton project for using elm with webpack. Unit test support via elm-test. In dev mode hot module swapping is support via elm-hot-loader.
+# elm-gamehostserver
+An attempt to create a server hosting an game code written in elm.
 
 ## Usage
 ###Build a distributable version:
