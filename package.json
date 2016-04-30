@@ -7,7 +7,9 @@
     "build": "rimraf dist && webpack --config webpack.dev.client.config.js && webpack --config webpack.dev.server.config.js",
     "watch": "webpack --config webpack.dev.client.config.js --watch && webpack --config webpack.dev.server.config.js",
     "dev": "webpack-dev-server --config webpack.dev.client.config.js --port 3000 --hot --inline",
-    "test": "webpack-dev-server --config webpack.test.client.config.js --port 3001 --inline"
+    "test": "webpack-dev-server --config webpack.test.client.config.js --port 3001 --inline",
+    "start": "node ./dist/server.main.js",
+    "debugServer": "set DEBUG=express:* & node ./dist/server.main.js"
   },
   "keywords": [
     "elm",
@@ -23,6 +25,7 @@
     "url": "https://github.com/greyepoxy/elm-webpack-skeleton.git"
   },
   "devDependencies": {
+    "assets-webpack-plugin": "^3.4.0",
     "basscss": "^8.0.1",
     "css-loader": "^0.23.1",
     "elm-hot-loader": "^0.1.4",

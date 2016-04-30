@@ -1,6 +1,10 @@
 var path = require("path");
 var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var AssetsPlugin = require('assets-webpack-plugin');
+
+var distFolder = path.resolve(path.join(__dirname, 'dist'));
+var assetDistFolder = path.join(distFolder, 'assets');
 
 module.exports = {
   
@@ -15,14 +19,15 @@ module.exports = {
         template: 'src/index.html',
         inject:   'body',
         filename: 'index.html'
-      })
+      }),
+      new AssetsPlugin({path: distFolder})
     ],
 
   },
   
   indexFileConfig: {
     output: {
-      path: path.resolve(__dirname + '/dist'),
+      path: assetDistFolder,
     },
     
     module: {
@@ -49,36 +54,36 @@ module.exports = {
   
   indexEntryConfig: {
     entry: {
-      app: [
-        './src/index.js'
+      main: [
+        './src/Client/main.js'
       ]
     },
     output: {
-      filename: '[hash].js'
+      filename: 'client.[hash].js'
     },
   },
   
   indexDevEntryConfig: {
     entry: {
-      app: [
-        './src/indexDev.js'
+      main: [
+        './src/Client/mainDev.js'
       ]
     },
     output: {
-      filename: '[name].js'
+      filename: 'client.[name].js'
     },
   },
   
   testFileConfig: {
     entry: {
-      app: [
+      tests: [
         './src/tests.js'
       ]
     },
 
     output: {
-      path: path.resolve(__dirname + '/dist/tests'),
-      filename: 'tests.js',
+      path: assetDistFolder,
+      filename: '[name].js',
     },
   },
   
