@@ -1,4 +1,5 @@
-var webpack = require('webpack');
+var merge = require( 'webpack-merge' );
+var elmConfig = require('./webpack.common.config.js').elmConfig;
 var path = require('path');
 var fs = require('fs');
 
@@ -11,14 +12,16 @@ fs.readdirSync('node_modules')
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
-module.exports = {
-  entry: {
-    main: ['./src/Server/mainDev.js']
+module.exports = merge({
+    entry: {
+      main: ['./src/Server/mainDev.js']
+    },
+    target: 'node',
+    output: {
+      path: path.resolve(__dirname + '/dist'),
+      filename: 'server.[name].js'
+    },
+    externals: nodeModules
   },
-  target: 'node',
-  output: {
-    path: path.resolve(__dirname + '/dist'),
-    filename: 'server.[name].js'
-  },
-  externals: nodeModules
-}
+  elmConfig
+);

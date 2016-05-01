@@ -1,4 +1,4 @@
-module Main (..) where
+module Client.Main (..) where
 
 import Html exposing (..)
 import Effects exposing (Effects, Never)
