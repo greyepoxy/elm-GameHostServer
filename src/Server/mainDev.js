@@ -1,13 +1,15 @@
 
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var app = express();
 
 app.use('/assets', express.static('dist/assets'));
 
 var Elm = require('./Main.elm');
 app.get('/', function(req, res) {
-  var app = Elm.worker(Elm.Server.Main, {requests:null});
+  var assetFiles = JSON.parse(fs.readFileSync('dist/webpack-assets.json', 'utf8'));
+  var app = Elm.worker(Elm.Server.Main, {requests:null, assets:assetFiles});
   app.ports.responses.subscribe(sendResponse);
   
   app.ports.requests.send({

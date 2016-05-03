@@ -4,7 +4,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var AssetsPlugin = require('assets-webpack-plugin');
 
 var distFolder = path.resolve(path.join(__dirname, 'dist'));
-var assetDistFolder = path.join(distFolder, 'assets');
+var assetsFolderName = "/assets/";
+var assetDistFolder = path.join(distFolder, assetsFolderName);
 
 module.exports = {
   
@@ -22,7 +23,7 @@ module.exports = {
   
   indexFileConfig: {
     output: {
-      path: assetDistFolder,
+      path: assetDistFolder
     },
     
     module: {
@@ -54,7 +55,8 @@ module.exports = {
       ]
     },
     output: {
-      filename: 'client.[hash].js'
+      filename: 'client.[hash].js',
+      publicPath: assetsFolderName
     },
   },
   
@@ -65,7 +67,8 @@ module.exports = {
       ]
     },
     output: {
-      filename: 'client.[name].js'
+      filename: 'client.[name].js',
+      publicPath: assetsFolderName
     },
   },
   
