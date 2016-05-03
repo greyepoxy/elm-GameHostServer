@@ -26,3 +26,4 @@ getHtml assetPaths =
       , node "script" [src assetPaths.js] []
     ]
   ]
+

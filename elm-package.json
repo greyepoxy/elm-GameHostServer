@@ -1,7 +1,7 @@
 {
     "version": "0.0.1",
-    "summary": "A skeleton project for using elm with webpack.",
-    "repository": "https://github.com/greyepoxy/elm-webpack-skeleton.git",
+    "summary": "a server client project for hosting a game.",
+    "repository": "https://github.com/greyepoxy/elm-gamehostserver.git",
     "license": "MIT",
     "source-directories": [
         "src"

@@ -68,7 +68,7 @@ module.exports = {
     },
     output: {
       filename: 'client.[name].js',
-      publicPath: assetsFolderName
+      publicPath: "http://localhost:3010/assets/"
     },
   },
   
