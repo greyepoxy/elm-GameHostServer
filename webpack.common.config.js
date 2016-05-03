@@ -15,11 +15,6 @@ module.exports = {
     
     plugins: [
       new ExtractTextPlugin('styles.[hash].css'),
-      new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        inject:   'body',
-        filename: 'index.html'
-      }),
       new AssetsPlugin({path: distFolder})
     ],
 

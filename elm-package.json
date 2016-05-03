@@ -7,6 +7,7 @@
         "src"
     ],
     "exposed-modules": [],
+    "native-modules": true,
     "dependencies": {
         "Bogdanp/elm-route": "2.0.0 <= v < 3.0.0",
         "NoRedInk/elm-check": "3.0.0 <= v < 4.0.0",

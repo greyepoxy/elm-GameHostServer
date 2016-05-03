@@ -1,7 +1,9 @@
 module Server.Main (..) where
 
+import Native.Http.Response.Write
 import Server.Routes exposing (Sitemap(..), match)
-import Signal exposing (Mailbox)
+import Server.Pages.Index as Index
+import Signal
 
 type alias RequestData = {
   method: String
@@ -23,6 +25,6 @@ getResponseForRequest : Maybe RequestData -> ResponseData
 getResponseForRequest request =
   case request of 
     Just {method, path} ->
-      {status=200,body="Hello World!!!!",mimeType="html"}
+      {status=200,body=(Native.Http.Response.Write.toHtml Index.getHtml),mimeType="html"}
     Nothing ->
       {status=200,body="Hello World!!!!",mimeType="html"}
