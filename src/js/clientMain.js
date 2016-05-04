@@ -2,7 +2,7 @@
 
 require("basscss/css/basscss.css");
 
-var Elm = require('./Main.elm');
+var Elm = require('../ClientMain.elm');
 var mountNode = document.getElementById('main');
 
-var app = Elm.embed(Elm.Client.Main, mountNode);
+var app = Elm.embed(Elm.ClientMain, mountNode);

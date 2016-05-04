@@ -6,10 +6,10 @@ var app = express();
 
 app.use('/assets', express.static('dist/assets'));
 
-var Elm = require('./Main.elm');
+var Elm = require('../ServerMain.elm');
 app.get('/', function(req, res) {
   var assetFiles = JSON.parse(fs.readFileSync('dist/webpack-assets.json', 'utf8'));
-  var app = Elm.worker(Elm.Server.Main, {requests:null, assets:assetFiles});
+  var app = Elm.worker(Elm.ServerMain, {requests:null, assets:assetFiles});
   app.ports.responses.subscribe(sendResponse);
   
   app.ports.requests.send({

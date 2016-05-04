@@ -13,12 +13,6 @@ module.exports = {
     resolve: {
       modulesDirectories: ['node_modules'],
     },
-    
-    plugins: [
-      new ExtractTextPlugin('styles.[hash].css'),
-      new AssetsPlugin({path: distFolder})
-    ],
-
   },
   
   indexFileConfig: {
@@ -46,12 +40,17 @@ module.exports = {
         }
       ],
     },
+    
+    plugins: [
+      new ExtractTextPlugin('styles.[hash].css'),
+      new AssetsPlugin({path: distFolder})
+    ],
   },
   
   indexEntryConfig: {
     entry: {
       main: [
-        './src/Client/main.js'
+        './src/js/clientMain.js'
       ]
     },
     output: {
@@ -63,7 +62,7 @@ module.exports = {
   indexDevEntryConfig: {
     entry: {
       main: [
-        './src/Client/mainDev.js'
+        './src/js/clientMainDev.js'
       ]
     },
     output: {
@@ -75,7 +74,7 @@ module.exports = {
   testFileConfig: {
     entry: {
       tests: [
-        './src/tests.js'
+        './src/js/tests.js'
       ]
     },
 
@@ -83,6 +82,14 @@ module.exports = {
       path: assetDistFolder,
       filename: '[name].js',
     },
+    
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: 'src/js/testIndex.html',
+        inject:   'body',
+        filename: 'index.html'
+      }),
+    ]
   },
   
   devConfig: {

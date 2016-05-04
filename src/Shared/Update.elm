@@ -1,7 +1,7 @@
-module App.Update (..) where
+module Shared.Update (..) where
 
-import App.Model exposing (..)
-import App.Actions exposing (..)
+import Shared.Model exposing (..)
+import Shared.Actions exposing (..)
 import Effects exposing (Effects)
 
 

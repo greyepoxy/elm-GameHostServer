@@ -1,4 +1,4 @@
-module Server.Main (..) where
+module ServerMain (..) where
 
 import Native.Http.Response.Write
 import Server.Assets exposing (AllAssetPaths)

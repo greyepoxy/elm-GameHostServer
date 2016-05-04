@@ -1,6 +1,6 @@
 module TestRunner where
 
-import App.Components.FakeTests exposing (tests)
+import Shared.FakeTests exposing (tests)
 
 import ElmTest exposing (..)
 import Graphics.Element exposing (Element)

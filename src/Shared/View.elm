@@ -1,8 +1,8 @@
-module App.View (..) where
+module Shared.View (..) where
 
 import Html exposing (..)
-import App.Actions exposing (..)
-import App.Model exposing (..)
+import Shared.Actions exposing (..)
+import Shared.Model exposing (..)
 
 
 view : Signal.Address Action -> AppModel -> Html

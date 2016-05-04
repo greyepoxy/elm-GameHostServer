@@ -1,13 +1,13 @@
-module Client.MainDev (..) where
+module ClientMainDev (..) where
 
 import Html exposing (..)
 import Effects exposing (Effects, Never)
 import Task exposing (Task)
 import StartApp
-import App.Actions exposing (..)
-import App.Model exposing (..)
-import App.Update exposing (..)
-import App.View exposing (..)
+import Shared.Actions exposing (..)
+import Shared.Model exposing (..)
+import Shared.Update exposing (..)
+import Shared.View exposing (..)
 
 
 init : ( AppModel, Effects Action )
