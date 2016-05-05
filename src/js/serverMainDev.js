@@ -14,7 +14,8 @@ app.get('/*', function(req, res) {
   
   app.ports.requests.send({
     method: req.method,
-    path: req.path
+    path: req.path,
+    body: ""//req.body //seems like to get this to work have to add in body parsing middleware
   });
   
   function sendResponse(data) {
