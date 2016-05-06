@@ -3,5 +3,5 @@ module Server.Requests (..) where
 type alias RequestData = {
   method: String
   , path: String
-  , body: String
+  , body: Maybe String
 }

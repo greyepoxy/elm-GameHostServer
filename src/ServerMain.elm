@@ -2,7 +2,8 @@ module ServerMain (..) where
 
 import Server.Assets exposing (AllAssetPaths)
 import Server.Requests exposing (RequestData)
-import Server.Responses exposing (ResponseData, getResponseForRequest)
+import Server.Response exposing (ResponseData)
+import Server.Responses exposing (getResponseForRequest)
 import Signal
 
 

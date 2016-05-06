@@ -4,13 +4,13 @@ import Html exposing (..)
 import Effects exposing (Effects, Never)
 import Task exposing (Task)
 import StartApp
-import Shared.Actions exposing (..)
+import Shared.Messages exposing (..)
 import Shared.Model exposing (..)
 import Shared.Update exposing (..)
 import Shared.View exposing (..)
 
 
-init : ( AppModel, Effects Action )
+init : ( AppModel, Effects Msg )
 init =
   ( initialModel, Effects.none )
 
@@ -38,6 +38,6 @@ port runner =
 port swap : Signal Bool
 
 -- map swap to Empty action
-swapsignal : Signal Action
+swapsignal : Signal Msg
 swapsignal =
   Signal.map (\_ -> NoOp) swap

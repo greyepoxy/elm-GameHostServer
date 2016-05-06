@@ -2,8 +2,10 @@
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 var app = express();
 
+app.use(bodyParser.text())
 app.use('/assets', express.static('dist/assets'));
 
 var Elm = require('../ServerMain.elm');
@@ -15,7 +17,7 @@ app.get('/*', function(req, res) {
   app.ports.requests.send({
     method: req.method,
     path: req.path,
-    body: ""//req.body //seems like to get this to work have to add in body parsing middleware
+    body: app.body || null
   });
   
   function sendResponse(data) {

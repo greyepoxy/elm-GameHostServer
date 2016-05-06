@@ -1,10 +1,12 @@
 module Shared.Update (..) where
 
 import Shared.Model exposing (..)
-import Shared.Actions exposing (..)
+import Shared.Messages exposing (..)
 import Effects exposing (Effects)
 
 
-update : Action -> AppModel -> ( AppModel, Effects Action )
+update : Msg -> AppModel -> ( AppModel, Effects Msg )
 update action model =
-  ( model, Effects.none )
+  case model.serverMsg of
+    Nothing -> ( model, Effects.none )
+    _ -> ( model, Effects.none )

@@ -1,18 +1,15 @@
 module Server.Async.ClientRequests (handleRequest) where
 
-import Shared.Async.Requests
+import Shared.Async.Requests exposing (ApiPath(..), RootApiPath(..))
+import Server.Requests exposing (RequestData)
 import Json.Decode exposing (Decoder, decodeString, tuple2, string)
 
-handleRequest: Shared.Async.Requests.ApiPath -> String -> Maybe String
-handleRequest path requestBody =
+handleRequest: Shared.Async.Requests.ApiPath -> RequestData -> Maybe String
+handleRequest path req =
   case path of
-    Shared.Async.Requests.GetWordsAppended () ->
-      let
-        params = decodeString decodeStringTuple requestBody
-      in
-        Result.map Shared.Async.Requests.getWordsAppendedFunc params
-          |> Result.map toString
-          |> Result.toMaybe
+    AsyncClientR (GetUserGameR gameQuery) ->
+      Just (getGameInfo gameQuery)
 
-decodeStringTuple: Decoder (String, String)
-decodeStringTuple = tuple2 (,) string string
+getGameInfo: (Int, Int) -> String
+getGameInfo (userId, gameId) =
+  toString userId ++ toString gameId

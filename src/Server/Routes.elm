@@ -1,4 +1,4 @@
-module Server.Routes  (Sitemap(..), match, route) where
+module Server.Routes  (Sitemap(..), match, render) where
 
 import Route exposing (..)
 import Shared.Async.Requests exposing (ApiPath, apiPaths)
@@ -8,14 +8,13 @@ type Sitemap
   | AsyncClientR ApiPath
 
 homeR = HomeR := static ""
-asyncClientR = "async" <//> child AsyncClientR apiPaths
-sitemap = router [homeR, asyncClientR]
+sitemap = router [homeR, child AsyncClientR apiPaths]
 
 match : String -> Maybe Sitemap
 match = Route.match sitemap
 
-route : Sitemap -> String
-route r =
+render : Sitemap -> String
+render r =
   case r of
     HomeR () -> Route.reverse homeR []
-    AsyncClientR apiPath -> Route.reverse asyncClientR []
+    AsyncClientR apiPath -> Shared.Async.Requests.render apiPath

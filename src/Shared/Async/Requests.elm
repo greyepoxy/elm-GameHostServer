@@ -2,26 +2,28 @@ module Shared.Async.Requests (..) where
 
 import Route exposing (..)
 
-type ApiPath
-  = GetWordsAppended ()
+type RootApiPath
+  = GetUserGameR (Int, Int)
 
-getWordsAppended = GetWordsAppended := static "getWordsAppended"
-apiPaths = router [getWordsAppended]
+getUserGameR = GetUserGameR := "user" <//> int </> "game" <//> int
+rootApiPaths = router [getUserGameR]
+
+renderRoot: RootApiPath -> String
+renderRoot r =
+  case r of
+    GetUserGameR (userId, gameId) -> Route.reverse getUserGameR [toString userId, toString gameId]
+
+type ApiPath
+  = AsyncClientR RootApiPath
+
+asyncClientR = "async" <//> child AsyncClientR rootApiPaths
+
+apiPaths = router [asyncClientR]
 
 match : String -> Maybe ApiPath
 match = Route.match apiPaths
 
-route : ApiPath -> String
-route r =
+render : ApiPath -> String
+render r =
   case r of
-    GetWordsAppended () -> Route.reverse getWordsAppended []
-
-type alias GetWordsAppendedFuncParams
-  = (String, String)
-
-type alias GetWordsAppendedFuncResult
-  = String
-
-getWordsAppendedFunc: GetWordsAppendedFuncParams -> GetWordsAppendedFuncResult
-getWordsAppendedFunc (word1, word2) =
-  word1 ++ word2
+    AsyncClientR rootR -> Route.reverse asyncClientR [] ++ renderRoot rootR
