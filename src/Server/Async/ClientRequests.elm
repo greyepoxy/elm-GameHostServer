@@ -12,4 +12,4 @@ handleRequest path req =
 
 getGameInfo: (Int, Int) -> String
 getGameInfo (userId, gameId) =
-  toString userId ++ toString gameId
+  "\"" ++ toString userId ++ toString gameId ++ "\""

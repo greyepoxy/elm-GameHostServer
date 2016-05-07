@@ -4,25 +4,11 @@ import Html exposing (..)
 import Effects exposing (Effects, Never)
 import Task exposing (Task)
 import StartApp
-import Shared.Messages exposing (..)
+import Client.Setup
 import Shared.Model exposing (..)
-import Shared.Update exposing (..)
-import Shared.View exposing (..)
-
-
-init : ( AppModel, Effects Msg )
-init =
-  ( initialModel, Effects.none )
-
 
 app : StartApp.App AppModel
-app =
-  StartApp.start
-    { init = init
-    , inputs = []
-    , update = update
-    , view = view
-    }
+app = Client.Setup.app []
 
 
 main : Signal Html
