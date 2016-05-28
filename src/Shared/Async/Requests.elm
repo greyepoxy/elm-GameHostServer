@@ -1,4 +1,4 @@
-module Shared.Async.Requests (..) where
+module Shared.Async.Requests exposing (..)
 
 import Route exposing (..)
 

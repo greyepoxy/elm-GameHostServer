@@ -1,6 +1,6 @@
-module Shared.Messages (..) where
+module Shared.Messages exposing (..)
 
 
-type Msg
+type Message
   = NoOp
   | NewServerMsg String

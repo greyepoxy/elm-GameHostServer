@@ -1,4 +1,4 @@
-module Server.Routes  (Sitemap(..), match, render) where
+module Server.Routes exposing (Sitemap(..), match, render)
 
 import Route exposing (..)
 import Shared.Async.Requests exposing (ApiPath, apiPaths)

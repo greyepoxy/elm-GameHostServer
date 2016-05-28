@@ -44,7 +44,7 @@ app.get('/game/:rootpath*', function(req, res) {
 var Elm = require('../ServerMain.elm');
 app.get('/*', function(req, res) {
   var assetFiles = JSON.parse(fs.readFileSync('dist/webpack-assets.json', 'utf8'));
-  var app = Elm.worker(Elm.ServerMain, {requests:null, assets:assetFiles});
+  var app = Elm.ServerMain.worker({assetPaths:assetFiles});
   app.ports.responses.subscribe(sendResponse);
   
   app.ports.requests.send({

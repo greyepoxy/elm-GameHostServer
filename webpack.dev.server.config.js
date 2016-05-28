@@ -14,7 +14,7 @@ fs.readdirSync('node_modules')
 
 module.exports = merge({
     entry: {
-      main: ['./src/js/serverMainDev.js']
+      main: ['./src/js/serverMain.js']
     },
     target: 'node',
     output: {

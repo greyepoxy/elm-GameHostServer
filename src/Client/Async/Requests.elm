@@ -1,4 +1,4 @@
-module Client.Async.Requests (..) where
+module Client.Async.Requests exposing (..)
 
 import Http
 import Json.Decode as Json exposing ((:=))

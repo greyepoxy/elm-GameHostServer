@@ -1,21 +1,21 @@
-module ClientMain (..) where
+module ClientMain exposing (..)
 
-import Html exposing (..)
-import Effects exposing (Effects, Never)
-import Task exposing (Task)
-import StartApp
-import Client.Setup
+import Html.App
+import Shared.Messages exposing (..)
 import Shared.Model exposing (..)
+import Shared.Update exposing (..)
+import Shared.View exposing (..)
+import Client.Async.Functions exposing (clientAsyncFunctions)
 
-app : StartApp.App AppModel
-app = Client.Setup.app []
-
-
-main : Signal Html
+main : Program Never
 main =
-  app.html
+  Html.App.program
+    { init = init
+    , subscriptions = (\_-> Sub.none)
+    , update = updateWithFuncs clientAsyncFunctions
+    , view = view
+    }
 
-
-port runner : Signal (Task Never ())
-port runner =
-  app.tasks
+init : ( AppModel, Cmd Message )
+init = 
+  ( initialModel, clientAsyncFunctions.getWhatServerSays )

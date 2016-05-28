@@ -1,12 +1,12 @@
-module Shared.View (..) where
+module Shared.View exposing (..)
 
 import Html exposing (..)
 import Shared.Messages exposing (..)
 import Shared.Model exposing (..)
 
 
-view : Signal.Address Msg -> AppModel -> Html
-view address model =
+view : AppModel -> Html Message
+view model =
   div []
   [ 
     div [] [text ("Client says: " ++ model.clientMsg)]

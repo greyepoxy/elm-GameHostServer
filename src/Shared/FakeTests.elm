@@ -1,4 +1,4 @@
-module Shared.FakeTests(tests) where
+module Shared.FakeTests exposing (tests)
 
 import ElmTest exposing (..)
 

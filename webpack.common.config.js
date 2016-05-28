@@ -16,7 +16,14 @@ module.exports = {
   },
   
   indexFileConfig: {
+    entry: {
+      main: [
+        './src/js/clientMain.js'
+      ]
+    },
+    
     output: {
+      filename: 'client.[name].[hash].js',
       path: assetDistFolder
     },
     
@@ -48,25 +55,13 @@ module.exports = {
   },
   
   indexEntryConfig: {
-    entry: {
-      main: [
-        './src/js/clientMain.js'
-      ]
-    },
     output: {
-      filename: 'client.[hash].js',
       publicPath: assetsFolderName
     },
   },
   
   indexDevEntryConfig: {
-    entry: {
-      main: [
-        './src/js/clientMainDev.js'
-      ]
-    },
     output: {
-      filename: 'client.[name].js',
       publicPath: "http://localhost:3010/assets/"
     },
   },

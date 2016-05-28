@@ -1,14 +1,13 @@
-module Shared.Update (..) where
+module Shared.Update exposing (..)
 
 import Shared.Async.Functions exposing (AsyncFunctions)
 import Shared.Model exposing (..)
 import Shared.Messages exposing (..)
-import Effects exposing (Effects)
 
 
-updateWithFuncs : AsyncFunctions -> Msg -> AppModel -> ( AppModel, Effects Msg )
+updateWithFuncs : AsyncFunctions -> Message -> AppModel -> ( AppModel, Cmd Message )
 updateWithFuncs funcs msg model =
   case msg of
-    NoOp -> ( model, Effects.none)
+    NoOp -> ( model, Cmd.none)
     NewServerMsg result ->
-      ({model | serverMsg= Just result}, Effects.none)
+      ({model | serverMsg= Just result}, Cmd.none)

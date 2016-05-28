@@ -1,4 +1,4 @@
-module Server.Response (..) where
+module Server.Response exposing (..)
 
 type alias ResponseData = {
   status: Int

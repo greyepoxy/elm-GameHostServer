@@ -1,4 +1,4 @@
-module Server.Assets (..) where
+module Server.Assets exposing (..)
 
 type alias AllAssetPaths = {
   main: IndexAssetPaths

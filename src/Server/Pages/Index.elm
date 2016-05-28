@@ -1,13 +1,13 @@
-module Server.Pages.Index (..) where
+module Server.Pages.Index exposing (..)
 
 import Server.Assets exposing (IndexAssetPaths)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-meta: List Attribute -> List Html -> Html
+meta: List (Attribute msg) -> List (Html msg) -> Html msg
 meta attributes childNodes = node "meta" attributes childNodes
 
-getHtml: IndexAssetPaths -> Html
+getHtml: IndexAssetPaths -> Html msg
 getHtml assetPaths =
   node "html" [lang "en-us"]
   [

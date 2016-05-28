@@ -1,4 +1,4 @@
-module Server.Responses (..) where
+module Server.Responses exposing (..)
 
 import Http.Response.Write exposing (writeNode)
 import Server.Assets exposing (AllAssetPaths)
@@ -9,24 +9,21 @@ import Server.Pages.Index as Index
 
 import Server.Async.ClientRequests
 
-getResponseForRequest : AllAssetPaths -> Maybe RequestData -> ResponseData
-getResponseForRequest assets maybeRequest =
-  case maybeRequest of 
-    Just request ->
-      case match request.path of
-        Just sitemap ->
-          case sitemap of
-            HomeR () -> {status=200,body=(writeNode (Index.getHtml assets.main)),mimeType="html"}
-            AsyncClientR apiPath ->
-              let
-                response = Server.Async.ClientRequests.handleRequest apiPath request
-              in
-                case response of
-                  Just resBody ->
-                    {status=200,body=resBody,mimeType="json"}
-                  Nothing -> get404
-        Nothing -> get404
-    Nothing -> get404
+getResponseForRequest : AllAssetPaths -> RequestData -> ResponseData
+getResponseForRequest assets request =
+    case match request.path of
+      Just sitemap ->
+        case sitemap of
+          HomeR () -> {status=200,body=(writeNode (Index.getHtml assets.main)),mimeType="html"}
+          AsyncClientR apiPath ->
+            let
+              response = Server.Async.ClientRequests.handleRequest apiPath request
+            in
+              case response of
+                Just resBody ->
+                  {status=200,body=resBody,mimeType="json"}
+                Nothing -> get404
+      Nothing -> get404
 
 get404 : ResponseData
 get404 = {status=404,body="Page not found for request",mimeType="html"}

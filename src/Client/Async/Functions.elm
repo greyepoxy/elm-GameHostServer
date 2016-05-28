@@ -1,9 +1,8 @@
-module Client.Async.Functions (clientAsyncFunctions) where
+module Client.Async.Functions exposing (clientAsyncFunctions)
 
 import Client.Async.Requests exposing (getGameInformation)
 import Shared.Async.Functions exposing (AsyncFunctions)
-import Shared.Messages exposing (Msg(NewServerMsg))
-import Effects exposing (Effects)
+import Shared.Messages exposing (Message(NewServerMsg))
 import Task
 import Http
 
@@ -12,21 +11,20 @@ clientAsyncFunctions = {
     getWhatServerSays = getWhatServerSays
   }
 
-getWhatServerSays: Effects Msg
+getWhatServerSays: Cmd Message
 getWhatServerSays = 
   (getGameInformation 5 10)
-    |> Task.toResult
-    |> Task.map mapResultToMsg
-    |> Effects.task
+    |> Task.perform mapHttpErrorToMsg mapServerResponseToMsg
 
-mapResultToMsg: Result Http.Error String -> Msg
-mapResultToMsg result =
-  case result of
-    Ok serverMsg -> NewServerMsg serverMsg
-    Err httpErr ->
-      case httpErr of
-        Http.Timeout -> NewServerMsg "Timeout"
-        Http.NetworkError -> NewServerMsg "NetworkError"
-        Http.UnexpectedPayload errMsg -> NewServerMsg ("UnexpectedPayload:" ++ errMsg)
-        Http.BadResponse status errMsg -> NewServerMsg ("BadResponse:" ++ errMsg)
+mapHttpErrorToMsg: Http.Error -> Message
+mapHttpErrorToMsg httpErr =
+  case httpErr of
+    Http.Timeout -> NewServerMsg "Timeout"
+    Http.NetworkError -> NewServerMsg "NetworkError"
+    Http.UnexpectedPayload errMsg -> NewServerMsg ("UnexpectedPayload:" ++ errMsg)
+    Http.BadResponse status errMsg -> NewServerMsg ("BadResponse:" ++ errMsg)
+
+mapServerResponseToMsg: String -> Message
+mapServerResponseToMsg response =
+  NewServerMsg response
   

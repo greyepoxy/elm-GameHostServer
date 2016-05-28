@@ -1,4 +1,4 @@
-module Shared.Model (..) where
+module Shared.Model exposing (..)
 
 
 type alias AppModel = {
