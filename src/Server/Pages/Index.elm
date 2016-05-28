@@ -22,7 +22,7 @@ getHtml assetPaths =
     ]
     , body []
     [
-      div [id "main"] [text "If you have JavaScript enabled this page is now loading..."]
+      div [id "main"] []
       , node "script" [src assetPaths.js] []
     ]
   ]

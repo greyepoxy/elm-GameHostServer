@@ -37,7 +37,6 @@
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
-    "vdom-to-html": "^2.2.0",
     "virtual-dom": "^2.1.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
