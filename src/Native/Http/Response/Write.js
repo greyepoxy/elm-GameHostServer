@@ -1,4 +1,4 @@
-var greyepoxy$elm_GameHostServer$Native_Http_Response_Write = function() {
+var _greyepoxy$elm_gamehostserver$Native_Http_Response_Write = function() {
 
 function toHtml(virtualDom) {
   var toHtml = require('vdom-to-html');

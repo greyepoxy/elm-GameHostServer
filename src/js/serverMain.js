@@ -47,11 +47,13 @@ app.get('/*', function(req, res) {
   var app = Elm.ServerMain.worker({assetPaths:assetFiles});
   app.ports.responses.subscribe(sendResponse);
   
-  app.ports.requests.send({
-    method: req.method,
-    path: req.path,
-    body: app.body || null
-  });
+  setTimeout(function() { 
+      app.ports.requests.send({
+        method: req.method,
+        path: req.path,
+        body: app.body || null
+      }); 
+    }, 0);
   
   function sendResponse(data) {
     app.ports.responses.unsubscribe(sendResponse);
