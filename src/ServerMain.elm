@@ -4,6 +4,8 @@ import Server.Assets exposing (AllAssetPaths)
 import Server.Requests exposing (RequestData)
 import Server.Response exposing (ResponseData)
 import Server.Responses exposing (getResponseForRequest, get404)
+import Shared.Game.Model
+import Shared.SignIn
 import Html.App
 import Html exposing (Html)
 import Task
@@ -49,6 +51,10 @@ getResponseFromRequest assetPaths requestToResponedTo =
 port responses : ResponseData -> Cmd msg
 
 port requests : (RequestData -> msg) -> Sub msg
+
+port getPlayerGames : Shared.SignIn.User -> Cmd msg
+
+port playerGames : (Shared.Game.Model.PlayerGames -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Message
 subscriptions model =

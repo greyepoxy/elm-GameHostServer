@@ -1,6 +1,7 @@
 module Shared.Messages exposing (..)
 
+import Shared.SignIn
 
 type Message
-  = NoOp
-  | NewServerMsg String
+  = NewServerMsg String
+  | SignInMsg Shared.SignIn.Message

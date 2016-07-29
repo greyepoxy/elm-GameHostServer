@@ -13,7 +13,7 @@ clientAsyncFunctions = {
 
 getWhatServerSays: Cmd Message
 getWhatServerSays = 
-  (getGameInformation 5 10)
+  (getGameInformation 5 15)
     |> Task.perform mapHttpErrorToMsg mapServerResponseToMsg
 
 mapHttpErrorToMsg: Http.Error -> Message

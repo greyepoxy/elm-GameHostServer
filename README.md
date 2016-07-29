@@ -1,15 +1,28 @@
 # elm-gamehostserver
-An attempt to create a server hosting an game code written in elm.
+A Server hosting a website written mostly in Elm.
+
+## Setup
+As with any node/npm based project their are a couple one time setup steps.
+
+1. Install node.js https://nodejs.org/
+1. Install elm, `npm install -g elm`
+1. Get the project dependencies, `npm install`
+1. Get the Elm project dependencies, `elm package install`
 
 ## Usage
-###Build a distributable version:
-`npm run build` builds both the client and server code resulting files output to `dist/`. Start the server with `npm run startServer`. Navigate to `http://localhost:3000/` to view.
+### Development:
+Fastest way to get started is run the `gulp dev` task.
+Once you see nodemon start the server navigate to `http://localhost:3000/` to view.
 
-###During development:
-`npm run watchServer` will auto-recompile the server code on save. `npm run startDev` will recompile the client code on save and will also host it so that hot module replacement is supported. `npm run startServer` starts the server and will restart when the server file is recompiled. `npm run startDebugServer` starts the server with debug params set so that logs are output to the console.
+`gulp dev` starts several dev tasks
+1. `webpack-dev-server:client` will auto-recompile the client code on save. It also hosts the client code at `http://localhost:3010/` with hot module replacement support.
+1. `build-dev:server` will auto-recompile the server code on save.
+1. `start-dev:server:new-process` will start the server at `http://localhost:3000/` and will auto-restart whenever the compiled server file is changed.
+1. `webpack-dev-server:tests` will auto-recompile the test code on save and will also host it at `http://localhost:8000/`.
 
-Can also debug the server code using vscode, use the provided `.vscode/launch.json` file
+If you wish to debug then you can use vscode, use the provided `.vscode/launch.json` file
 
-###To run unit tests:
-`npm run test` and navigate to `http://localhost:8000/`.
-On save, webpack will auto rebuild and any browser windows will auto reload.
+### Test production version:
+This project is intended to run on anything that supports iisnode (like azure web apps). Use `gulp prepare:prod` to prepare a production ready distributable version of the site in the `_dist` folder.
+
+You can validate that it works by running the `gulp run:prod` command to start the server using the production scripts. Navigate to `http://localhost:3000/` to view.

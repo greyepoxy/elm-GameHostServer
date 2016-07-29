@@ -1,7 +1,8 @@
 module Shared.SignIn exposing (..)
 
 import Html exposing (..)
-import Shared.Async.Functions exposing (AsyncFunctions)
+import Html.Events exposing (..)
+import Task
 
 type alias User = {
   id: String,
@@ -18,12 +19,37 @@ initialModel = {
   }
 
 type Message = 
-  SignIn User
+  StartSignIn
+  | StartSignOut
+  | SignIn User
 
-updateWithFuncs : AsyncFunctions -> Message -> Model -> ( Model, Cmd Message )
-updateWithFuncs funcs msg model =
-  model ! []
+update : Message -> Model -> ( Model, Cmd Message )
+update msg model =
+  case msg of
+    StartSignIn ->
+      model ! [signInFakeUser]
+    StartSignOut ->
+      { model | user = Nothing} ! []
+    SignIn user ->
+      { model | user= Just user} ! []
+
+signInFakeUser : Cmd Message
+signInFakeUser =
+  Task.perform (\_-> SignIn fakeUser) (\_-> SignIn fakeUser) (Task.succeed 0)
+
+fakeUser : User
+fakeUser = {
+    id="1"
+    , displayName="Fake User"
+  }
 
 view : Model -> Html Message
 view model =
-  button [] []
+  case model.user of
+    Nothing ->
+      button [onClick StartSignIn] [text "Log In"]
+    Just user ->
+      div []
+        [ text user.displayName
+          , button [onClick StartSignOut] [text "Log Out"]
+        ]

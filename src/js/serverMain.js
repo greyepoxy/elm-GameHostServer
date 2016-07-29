@@ -7,7 +7,7 @@ var https = require('https');
 var app = express();
 
 app.use(bodyParser.text())
-app.use('/assets', express.static('dist/assets'));
+app.use('/assets', express.static('assets'));
 
 app.get('/game/:rootpath*', function(req, res) {
   var splitRootPath = req.params.rootpath.split('/', 1);
@@ -43,7 +43,7 @@ app.get('/game/:rootpath*', function(req, res) {
 
 var Elm = require('../ServerMain.elm');
 app.get('/*', function(req, res) {
-  var assetFiles = JSON.parse(fs.readFileSync('dist/webpack-assets.json', 'utf8'));
+  var assetFiles = JSON.parse(fs.readFileSync('webpack-assets.json', 'utf8'));
   var app = Elm.ServerMain.worker({assetPaths:assetFiles});
   app.ports.responses.subscribe(sendResponse);
   
@@ -62,6 +62,8 @@ app.get('/*', function(req, res) {
   };
 });
 
-app.listen(3000, function() {
-  console.log('Started server on port 3000.');
+var port = process.env.PORT || 3000;
+
+app.listen(port, function() {
+  console.log('Started server on port "'+ port +'".');
 });

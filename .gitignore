@@ -1,5 +1,7 @@
-# webpack generated files
-dist
+# webpack development generated files
+_build
+_dist
+.publish
 
 # elm-package generated files
 #elm-package.json
